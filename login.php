@@ -17,8 +17,8 @@ exit();
 if($token==""){
   while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
 {
-  if($username==$result['username'] and $password==$result['password']){
-    $status="susscc----".$result['status']."_".$result['id'];
+  if($username==$result['username_user'] and $password==$result['password']){
+    $status="susscc----".$result['status_user']."_".$result['id_user'];
     $status=base64_encode($status);
     echo $status;
     exit();
@@ -31,7 +31,7 @@ $ar2 = explode("_",$ar[1]);
 
 while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
   {
-    if($ar2[1]==$result['id'] and $ar2[0]==$result['status']){
+    if($ar2[1]==$result['id_user'] and $ar2[0]==$result['status_user']){
       $status="susscc----".$result['status']."_".$result['id'];
       $status=base64_encode($status);
       echo $status;

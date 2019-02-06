@@ -19,19 +19,20 @@ exit();
 }
 while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
 {
-  if($username==$result['username']){
-    echo $username." == ".$result['username'];
+  if($username==$result['username_user']){
+    // echo $username." == ".$result['username_user'];
     echo "username has is registered chang username!!!";
     exit();
   }
 }
 echo "succss";
-$file = $file . uniqid() . ".png";
+$name_file =  uniqid() . ".png";
+$file = $file .$name_file;
 $current = file_get_contents($file);
 $current .= $image;
 file_put_contents($file, $current);
-$sql="INSERT INTO `user`(`id`, `username`, `password`, `name`, `last_name`, `address`, `tel`, `etc`, `status` , `image`) 
-VALUES (NULL,'$username','$password','$name','$last_name','$address','$tel','$etc','$status','$file')";
+$sql="INSERT INTO `user`(`id_user`, `username_user`, `password_user`, `name_user`, `last_name_user`, `address_user`, `tel_user`, `etc_user`, `status_user` , `image_user`) 
+VALUES (NULL,'$username','$password','$name','$last_name','$address','$tel','$etc','$status','$name_file')";
 $query= mysqli_query($databaseconnect,$sql);
 if (!$query) {
 	printf("Error: %s\n", $databaseconnect->error);
