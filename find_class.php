@@ -14,7 +14,6 @@ exit();
 $resultArray = array();
 while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
 {
-  
     array_push($resultArray,$result);  
 }
 // echo $status;

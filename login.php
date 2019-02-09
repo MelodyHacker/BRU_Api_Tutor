@@ -1,13 +1,13 @@
 <?php
-// error_reporting(-1);
-// ini_set('display_errors', 'On');
+error_reporting(-1);
+ini_set('display_errors', 'On');
 require 'connect.php';
 mysqli_set_charset($databaseconnect,"utf8");
 $username=$_POST['username'];
 $password=$_POST['password'];
 $token = $_POST['token'];
-$status="";
-$sqlall ="SELECT * FROM user";    
+$status="Not Register";
+$sqlall ="SELECT * FROM register";    
 $queryall= mysqli_query($databaseconnect,$sqlall);
 if (!$queryall) {
 	printf("Error: %s\n", $databaseconnect->error);
@@ -17,8 +17,8 @@ exit();
 if($token==""){
   while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
 {
-  if($username==$result['username_user'] and $password==$result['password_user']){
-    $status="susscc----".$result['status_user']."_".$result['id_user'];
+  if($username==$result['R_Username'] and $password==$result['R_Password']){
+    $status="susscc----".$result['R_Status']."_".$result['R_ID'];
     $status=base64_encode($status);
     echo $status;
     exit();
@@ -31,8 +31,8 @@ $ar2 = explode("_",$ar[1]);
 
 while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
   {
-    if($ar2[1]==$result['id_user'] and $ar2[0]==$result['status_user']){
-      $status="susscc----".$result['status_user']."_".$result['id_user'];
+    if($ar2[1]==$result['R_ID'] and $ar2[0]==$result['R_Status']){
+      $status="susscc----".$result['R_Status']."_".$result['R_ID'];
       $status=base64_encode($status);
       echo $status;
 exit();    
