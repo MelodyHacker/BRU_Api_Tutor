@@ -1,6 +1,6 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 'On');
+// error_reporting(-1);
+// ini_set('display_errors', 'On');
 require 'connect.php';
 mysqli_set_charset($databaseconnect,"utf8");
 $username=$_POST['username'];

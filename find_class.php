@@ -5,7 +5,8 @@ require 'connect.php';
 $id_tutor = $_POST['id_tutor'];
 mysqli_set_charset($databaseconnect,"utf8");
 $resultArray = array();
-$sql ="SELECT * FROM class LEFT JOIN user ON class.id_tutor_class = user.id_user WHERE class.status_class = 'open' and user.id_user = '$id_tutor'";   
+$sql ="SELECT * FROM openclass LEFT JOIN register ON openclass.R_ID = register.R_ID 
+WHERE openclass.OP_Status = '0' and register.R_ID = '$id_tutor'";   
 $queryall= mysqli_query($databaseconnect,$sql);
 if (!$queryall) {
 	printf("Error: %s\n", $databaseconnect->error);

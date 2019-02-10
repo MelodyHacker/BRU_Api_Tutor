@@ -8,7 +8,7 @@ mysqli_set_charset($databaseconnect,"utf8");
 $resultArray = array();
 $sql ="SELECT * FROM openclass LEFT JOIN register ON 
 openclass.R_ID = register.R_ID
-WHERE openclass.Op_Status = '1' 
+WHERE openclass.Op_Status = '0' 
 and openclass.Dis_Name = '$area'";   
 
 // echo $sql;
