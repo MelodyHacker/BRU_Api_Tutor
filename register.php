@@ -25,18 +25,16 @@ $address=$_POST['address'];
 $tel=$_POST['tel'];
 $status=$_POST['status'];
 $line=$_POST['line'];
-$email=$_POST['email'];
+$email=$_POST['e_mail'];
+$area=$_POST['area'];
 $gender=$_POST['gender'];
-$study=$_POST['study'];
+$study=$_POST['where'];
 $faculty=$_POST['faculty'];
 $etc=$_POST['etc'];
 $date=date("r");
+$name_img=uniqid();
 $file = '/var/www/html/dev/tutor/img/';
-
-
-
-
-echo $date;
+// echo $date;
 $image = base64_decode($_POST['image']);
 $sqlall ="SELECT * FROM register";    
 $queryall= mysqli_query($databaseconnect,$sqlall);
@@ -52,19 +50,25 @@ while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
     exit();
   }
 }
-echo "succss";
-$name_file =  uniqid() . ".png";
+$name_file =  $name_img . ".png";
 $file = $file .$name_file;
 $current = file_get_contents($file);
 $current .= $image;
 file_put_contents($file, $current);
-$sql="INSERT INTO `register`(`R_ID`, `R_FristName`, `R_LastName`, `R_Username`, `R_Password`, `R_DisName`, `R_URLIMG`, `R_Phon`, `R_Line`, `R_Email`, `R_Status`, `R_Gender`, `R_University`, `R_Faculty`, `R_Description`, `R_Date`) 
-VALUES (NULL,'$name','$last_name',$username,$password,'$area','$file',$tel,'$line','$email','$status','$gender','$study','$faculty','$etc',NULL)";
-// echo $sql;
+$sql="INSERT INTO `register`(`R_ID`,
+ `R_FristName`,  `R_LastName`,  `R_Username`, `R_Password`,
+ `R_DisName`, `R_URLIMG`, `R_Phon`, `R_Line`, `R_Email`, `R_Status`, 
+ `R_Gender`, `R_University`, `R_Faculty`, `R_Description`, `R_Date`) 
+VALUES (NULL,
+'$name','$last_name','$username','$password',
+'$area','$name_img','$tel','$line','$email','$status',
+'$gender','$study','$faculty','$etc',NULL)";
+//  echo $sql;
 $query= mysqli_query($databaseconnect,$sql);
 if (!$query) {
 	printf("Error: %s\n", $databaseconnect->error);
 exit();
 }
+echo "succss";
 mysqli_close($databaseconnect);
 ?>

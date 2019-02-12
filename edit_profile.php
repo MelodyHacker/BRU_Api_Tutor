@@ -10,6 +10,7 @@ $last_name=$_POST['last_name'];
 $address=$_POST['address'];
 $tel=$_POST['tel'];
 $etc=$_POST['etc'];
+$area=$_POSST['area'];
 $status=$_POST['status'];
 $file = '/var/www/html/dev/tutor/img/';
 $image = base64_decode($_POST['image']);
@@ -17,7 +18,7 @@ $token=$_POST['token'];
 $ar = explode("----",base64_decode($token));
 $ar2 = explode("_",$ar[1]);
 $id=$ar2[1];
-
+$name_img= uniqid();
 while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
   {
     if($ar2[1]==$result['id_user'] and $ar2[0]==$result['status_user']){
@@ -33,28 +34,29 @@ exit();
 }
 while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
 {
-$name_file =  uniqid() . ".png";
+$name_file =  $name_img . ".png";
 $file = $file .$name_file;
 $current = file_get_contents($file);
 $current .= $image;
 file_put_contents($file, $current);
-$sql="UPDATE `user` SET `username_user`=$username,
-`password_user`='$password',
-`name_user`='$name',
-`last_name_user`='$last_name',
-`address_user`='$address',
-`tel_user`='$tel',
-`etc_user`='$etc',
-`status_user`='$status',
-`image_user`='$name_file' 
-WHERE id_user='$id' ";
+$sql="UPDATE `register` SET 
+`R_FristName`='$name',
+`R_LastName`='$last_name',
+`R_Phon`='$phone',
+`R_Line`='$line',
+`R_Email`='$email',
+`R_Gender`='$gender',
+`R_University`='$address',
+`R_Faculty`='$faculty',
+`R_Description`='$etc'
+WHERE R_ID='$id' ";
 $query= mysqli_query($databaseconnect,$sql);
 if (!$query) {
 	printf("Error: %s\n", $databaseconnect->error);
   echo "You Can Not User  !!!!!!!!!!";
   exit();
 }
-echo "succss";
+echo "Chang Succss";
 mysqli_close($databaseconnect);
 exit();    
 }}}
