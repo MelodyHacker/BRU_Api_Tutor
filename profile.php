@@ -47,18 +47,18 @@ $ar2 = explode("_",$ar[1]);
    if($date == '' ) $date="empty";
    if($image == '' ) $image="empty";
   
-    $data=$result['R_Username']."-".
-    $name."-".
-    $last_name."-".
-    $gender."-".
-    $tel."-".
-    $line."-".
-    $email."-". 
-    $area."-".
-    $study."-".
-    $faculty."-".
-    $etc."-".
-    $date."-".
+    $data=$result['R_Username']."--".
+    $name."--".
+    $last_name."--".
+    $gender."--".
+    $tel."--".
+    $line."--".
+    $email."--". 
+    $area."--".
+    $study."--".
+    $faculty."--".
+    $etc."--".
+    $date."--".
     $image;
   
     echo   $data;

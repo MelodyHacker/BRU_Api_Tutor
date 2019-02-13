@@ -12,7 +12,9 @@ require 'connect.php';
 // mmmm
 // 0
 
-$id_tutor = $_POST['id_tutor'];
+$token = $_POST['token'];
+$ar = explode("----",base64_decode($token));
+$ar2 = explode("_",$ar[1]);
 $name = $_POST['name'];
 $class = $_POST['class'];
 $degree = $_POST['degree'];
@@ -39,11 +41,10 @@ while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
    }  
 $id = ((int)$result['Op_ID'])+1;
 }
-$sql_in = "INSERT INTO `openclass`(`Op_ID`, `R_ID`, `Op_NameCourse`, `Sub_name`, `C_Name`, `Dis_Name`, `Op_Price`, `Op_Description`, `Op_Status`)
-VALUES ( '$id',$id_tutor,'$name','$class','$degree','$area','$clash','$etc','0')";
+$sql_in = "INSERT INTO 
+`openclass`(`Op_ID`, `R_ID`, `Op_NameCourse`, `Sub_name`, `C_Name`, `Dis_Name`, `Op_Price`, `Op_Description`, `Op_Status`)
+VALUES     ( '$id',$ar2[1],'$name','$class','$degree','$area','$clash','$etc','0')";
 
-// echo $sql_in;
-// exit();
 
 
 $query_insert= mysqli_query($databaseconnect,$sql_in);
