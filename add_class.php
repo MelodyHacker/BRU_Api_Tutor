@@ -27,7 +27,7 @@ $resultArray = array();
 $sql ="SELECT * FROM openclass WHERE R_ID='$id_tutor' and Op_Status='0' ";   
 $status = "Some Wrong";
 $queryall= mysqli_query($databaseconnect,$sql);
-$id = substr(uniqid(OP),0,6);
+$id = "";
 if (!$queryall) {
    printf("Error: %s\n", $databaseconnect->error);
    echo "Some Worng!!!";
@@ -39,8 +39,10 @@ while($result =mysqli_fetch_array($queryall,MYSQLI_ASSOC))
     echo "Name Class To Use";   
     exit();
    }  
-$id = ((int)$result['Op_ID'])+1;
+
 }
+$id = rand(6,999999);
+
 $sql_in = "INSERT INTO 
 `openclass`(`Op_ID`, `R_ID`, `Op_NameCourse`, `Sub_name`, `C_Name`, `Dis_Name`, `Op_Price`, `Op_Description`, `Op_Status`)
 VALUES     ( '$id',$ar2[1],'$name','$class','$degree','$area','$clash','$etc','0')";
